@@ -29,7 +29,7 @@ global $woocommerce;
 		<h2><?php _e('Order Updates', 'woocommerce'); ?></h2>
 		<ol class="commentlist notes">
 			<?php foreach ($notes as $note) : ?>
-			<li class="comment note">
+			<li class="comment note" style="padding-right: 15px;">
 				<div class="comment_container">
 					<div class="comment-text">
 						<p class="meta"><?php echo date_i18n('l jS \of F Y, h:ia', strtotime($note->comment_date)); ?></p>

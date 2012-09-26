@@ -37,20 +37,20 @@ global $woocommerce;
 		<p><?php _e('Thank you. Your order has been received.', 'woocommerce'); ?></p>
 
 		<ul class="order_details">
-			<li class="order">
+			<li class="order" style="padding-right: 15px;">
 				<?php _e('Order:', 'woocommerce'); ?>
 				<strong><?php echo $order->get_order_number(); ?></strong>
 			</li>
-			<li class="date">
+			<li class="date" style="padding-right: 15px;">
 				<?php _e('Date:', 'woocommerce'); ?>
 				<strong><?php echo date_i18n(get_option('date_format'), strtotime($order->order_date)); ?></strong>
 			</li>
-			<li class="total">
+			<li class="total" style="padding-right: 15px;">
 				<?php _e('Total:', 'woocommerce'); ?>
 				<strong><?php echo $order->get_formatted_order_total(); ?></strong>
 			</li>
 			<?php if ($order->payment_method_title) : ?>
-			<li class="method">
+			<li class="method" style="padding-right: 15px;">
 				<?php _e('Payment method:', 'woocommerce'); ?>
 				<strong><?php
 					echo $order->payment_method_title;
