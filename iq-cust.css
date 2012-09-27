@@ -15,11 +15,90 @@
  	width: 33%;
  	margin-left: 12%;
  	margin-right: 2%;
+ 	background-image: url(http://subtlepatterns.subtlepatterns.netdna-cdn.com/patterns/light_noise_diagonal.png);
+ 	border: 1px solid #B3B3B3;
+ 	border-radius: 4px;
+ 	height: 370px;
+ 	float: left;
  }
+
+h3.option 
+{
+	color: #888;
+	font-size: 24px;
+	text-align: center;
+}
 
  .last-option-container
  {
  	width: 33%;
  	margin-right: 12%;
  	margin-left: 2%;
+ 	background-image: url(http://subtlepatterns.subtlepatterns.netdna-cdn.com/patterns/light_noise_diagonal.png);
+ 	border: 1px solid #B3B3B3;
+ 	border-radius: 4px;
+ 	height: 370px;
+ 	float: right;
+ }
+
+ .option-header
+ {
+ 	text-align: center;
+ 	padding: 0px 20px 0 20px;
+ }
+
+ .option-content 
+ {
+ 	padding: 0px 20px 0 20px;
+ }
+
+ .option-button
+ {
+ 	width: 150px;
+ 	height: 32px;
+ }
+
+.options-parent
+{
+	width: 100%;
+	display: inline-block;
+}
+
+p.button
+{
+	text-align: center;
+}
+
+p.button2
+{
+	position: absolute;
+	top: 380px;
+	right: 220px;
+}
+
+p.button1
+{
+	position: absolute;
+	top: 380px;
+	left: 225px;
+}
+
+ .price
+ {
+ 	font-weight: 900;
+	font-size: 24px;
+ }
+
+ ul.options 
+ {
+ 	margin: 0;
+ }
+
+ ul.options li
+ {
+ 	font-weight: 400;
+	font-size: 12px;
+ 	list-style: disc;
+ 	padding: 0;
+ 	background: none;
  }

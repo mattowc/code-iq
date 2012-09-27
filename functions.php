@@ -34,4 +34,22 @@ include_once(TT_ADMIN_FOLDER_PATH.'auto_update_framework.php');  //FRAMEWORK AUT
 if(file_exists(TT_INCLUDES_FOLDER_PATH . 'auto_install/auto_install.php')){
 include_once (TT_INCLUDES_FOLDER_PATH . 'auto_install/auto_install.php'); // sample data insert file
 }
+
+// Hook in
+add_filter( 'woocommerce_checkout_fields' , 'custom_override_checkout_fields' );
+ 
+// Our hooked in function - $fields is passed via the filter!
+function custom_override_checkout_fields( $fields ) {
+     $fields['billing']['billing_height'] = array(
+        'label'     => __('Height', 'woocommerce'),
+    'placeholder'   => _x('Height', 'placeholder', 'woocommerce'),
+    'required'  => true,
+    'class'     => array('form-row-wide'),
+    'clear'     => true
+     );
+ 
+     return $fields;
+}
+
+
 ?>
