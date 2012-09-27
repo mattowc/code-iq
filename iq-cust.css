@@ -1,0 +1,25 @@
+/* 
+ * Written by Jonathon McDonald
+ * Sept. 27, 2012
+ * 
+ * Custom CSS
+ *
+ * **************
+ * Components
+ * **************
+ * I.  Payment Choices
+ */
+
+ .first-option-container
+ {
+ 	width: 33%;
+ 	margin-left: 12%;
+ 	margin-right: 2%;
+ }
+
+ .last-option-container
+ {
+ 	width: 33%;
+ 	margin-right: 12%;
+ 	margin-left: 2%;
+ }
