@@ -10,18 +10,29 @@
  * I.  Payment Choices
  */
 
- .first-option-container
- {
- 	width: 33%;
- 	margin-left: 12%;
+.first-option-container
+{
+ 	width: 30%;
+ 	margin-left: 0%;
  	margin-right: 2%;
  	background-image: url(http://subtlepatterns.subtlepatterns.netdna-cdn.com/patterns/light_noise_diagonal.png);
  	border: 1px solid #B3B3B3;
  	border-radius: 4px;
  	height: 370px;
  	float: left;
- }
+}
 
+.mid-option-container
+{
+	width: 30%;
+ 	margin-right: 2%;
+ 	margin-left: 2%;
+ 	background-image: url(http://subtlepatterns.subtlepatterns.netdna-cdn.com/patterns/light_noise_diagonal.png);
+ 	border: 1px solid #B3B3B3;
+ 	border-radius: 4px;
+ 	height: 370px;
+ 	float: left;
+}
 h3.option 
 {
 	color: #888;
@@ -31,8 +42,8 @@ h3.option
 
  .last-option-container
  {
- 	width: 33%;
- 	margin-right: 12%;
+ 	width: 30%;
+ 	margin-right: 0%;
  	margin-left: 2%;
  	background-image: url(http://subtlepatterns.subtlepatterns.netdna-cdn.com/patterns/light_noise_diagonal.png);
  	border: 1px solid #B3B3B3;
@@ -69,18 +80,25 @@ p.button
 	text-align: center;
 }
 
+p.button3
+{
+	position: absolute;
+	top: 380px;
+	right: 90px;
+}
+
 p.button2
 {
 	position: absolute;
 	top: 380px;
-	right: 220px;
+	left: 435px;
 }
 
 p.button1
 {
 	position: absolute;
 	top: 380px;
-	left: 225px;
+	left: 95px;
 }
 
  .price
