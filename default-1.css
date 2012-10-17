@@ -165,7 +165,7 @@ a.read_more { color: #777; }
 
 /* Inner Page -------------------------------- */
 .content blockquote{ background:url(1-default/quote.png) no-repeat left 4px; color:#231e1d; }
-.content ul li{ background:url(1-default/bullet_big.png) no-repeat left 18px;  }
+.content ul li{}
 
 
 .search form{ border:1px solid #d8d8d0;  }
