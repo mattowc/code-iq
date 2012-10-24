@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+
+    <style type="text/css">
+      html { height: 400px }
+      body { height: 400px; margin: 0; padding: 0 }
+      #map_canvas { height: 100% }
+      .info-title { font-size: 18px; font-family: Georgia;  }
+      .info-desc { font-size: 12px; font-family: Georgia;  }
+      .info-box { display: inline-block; position: relative; top: -20px;}
+    </style>
+	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC9nCorjYWxjr3nRMJThSTTLzACDA0ZqDk&sensor=false&libraries=places">
+	</script>
+
+	<script type="text/javascript">
+		// Written by Jonathon McDonald
+		// "Imagination rules the world."
+		var map;
+		var service;
+		var infowindow;
+
+		// Prepares map to showcase Learning Technics locations
+		function initialize()
+		{
+			// Prepare building the map by setting the options
+			var mapOptions = 
+			{
+				center: new google.maps.LatLng(40.4230, -98.7372),
+				zoom: 4,
+				mapTypeId: google.maps.MapTypeId.ROADMAP
+			};
+
+			// Initialize the map & info window
+			map = new google.maps.Map(document.getElementById("map_canvas"), 
+				mapOptions);
+
+			infowindow = new google.maps.InfoWindow;
+
+			// Prepare requests to fetch and place markers dynamically
+			var utahRequest = 
+			{
+				location: new google.maps.LatLng(40.7500, -111.8902778),
+				radius: '50000',
+				name: 'Learning Technics'
+			};
+
+			var idahoRequest = 
+			{
+				location: new google.maps.LatLng(43.6136, -116.2025),
+				radius: '50000',
+				name: 'Learning Technics'
+			};
+
+			var newYorkRequest = 
+			{
+				location: new google.maps.LatLng(40.7111, -73.9565),
+				radius: '50000',
+				name: 'Neurolinks'
+			};
+
+			var oregonRequest = 
+			{
+				location: new google.maps.LatLng(44.0583, -121.3142),
+				radius: '50000',
+				name: 'Learning Solutions'
+			};
+
+			var ogdenRequest = 
+			{
+				location: new google.maps.LatLng(41.2231, -111.9731),
+				radius: '50000',
+				name: 'Learning Technics'
+			};
+
+			// Initialize places service
+			service = new google.maps.places.PlacesService(map);
+
+			// Execute search queries
+			service.search(utahRequest, loopPlaces);
+			service.search(idahoRequest, loopPlaces);
+			service.search(newYorkRequest, loopPlaces);
+			service.search(oregonRequest, loopPlaces);
+			service.search(ogdenRequest, loopPlaces);
+		}
+
+		// Loops through a list of places, and sends the specific location
+		// to the map
+		function loopPlaces(results, status)
+		{
+			if(status == google.maps.places.PlacesServiceStatus.OK) 
+			{
+				for(var i = 0; i< results.length; i++) 
+				{
+					var place   = results[i];
+					var newRequest = 
+					{
+						reference: place.reference
+					};
+
+					service.getDetails(newRequest, checkStatus);
+				}
+			}
+		}
+
+		// Checks the status that the place was found
+		// If so creates a marker on the map
+		function checkStatus(place, status)
+		{
+			if(status == google.maps.places.PlacesServiceStatus.OK) {
+				createMarker(place);
+			}
+		}
+
+		// Generates a marker using the given place object
+		function createMarker(place) 
+		{
+			// Add the marker
+			var placeLoc = place.geometry.location;
+			var marker = new google.maps.Marker(
+			{
+				map: map,
+				position: placeLoc,
+				title: place.name
+			});
+
+			// Add an event listener that will display the info window
+			// This does the heavy lifting of info window inner html
+			google.maps.event.addListener(marker, 'click', function() 
+			{
+          		infowindow.setContent("<div class='info-box'><h3 class='info-title'>" + place.name + "</h3><div class='info-desc'>" + place.formatted_address + "<br />" + place.formatted_phone_number + "</div></div>");
+            	infowindow.open(map, this);
+        	});
+		}
+	</script>
+</head>
+<body onload="initialize()">
+	<div id="map_canvas" style="height: 400px; width: 100%;"></div>
+</body>
+</html>
+		

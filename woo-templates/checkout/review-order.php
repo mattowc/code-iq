@@ -8,6 +8,7 @@
  */
 
 global $woocommerce;
+global $bool_has_sub;  // If an item in the cart is this specific sub, display pretty text
 
 $available_methods = $woocommerce->shipping->get_available_shipping_methods();
 ?>
@@ -22,11 +23,6 @@ $available_methods = $woocommerce->shipping->get_available_shipping_methods();
 			</tr>
 		</thead>
 		<tfoot>
-
-			<tr class="cart-subtotal">
-				<th colspan="2"><strong><?php _e('Cart Subtotal', 'woocommerce'); ?></strong></th>
-				<td><?php echo $woocommerce->cart->get_cart_subtotal(); ?></td>
-			</tr>
 
 			<?php if ($woocommerce->cart->get_discounts_before_tax()) : ?>
 
@@ -203,7 +199,13 @@ $available_methods = $woocommerce->shipping->get_available_shipping_methods();
 
 			<tr class="total">
 				<th colspan="2"><strong><?php _e('Order Total', 'woocommerce'); ?></strong></th>
-				<td><strong><?php echo $woocommerce->cart->get_total(); ?></strong></td>
+				<td>
+				<?php if(WC_Subscriptions_Cart::cart_contains_subscription()) : ?>
+					<strong>$349 (plus shipping) $230/month for 6 months</strong>
+				<?php else: ?>
+					<strong><?php echo $woocommerce->cart->get_total(); ?></strong>
+				<?php endif; ?>
+				</td>
 			</tr>
 
 			<?php do_action('woocommerce_after_order_total'); ?>
@@ -215,12 +217,24 @@ $available_methods = $woocommerce->shipping->get_available_shipping_methods();
 					foreach ($woocommerce->cart->get_cart() as $item_id => $values) :
 						$_product = $values['data'];
 						if ($_product->exists() && $values['quantity']>0) :
+							if($values['product_id'] == 1973) :
+								$bool_has_sub = true;
+								echo'
+								<tr class = "' . esc_attr( apply_filters('woocommerce_checkout_table_item_class', 'checkout_table_item', $values, $item_id ) ) . '">
+									<td class="product-name">'.$_product->get_title().$woocommerce->cart->get_item_data( $values ).'</td>
+									<td class="product-quantity">'.$values['quantity'].'</td>
+									<td class="product-total">$230 / month for 6 months, with a $349 sign-up fee</td>
+								</tr>';
+
+							else :
+
 							echo '
 								<tr class = "' . esc_attr( apply_filters('woocommerce_checkout_table_item_class', 'checkout_table_item', $values, $item_id ) ) . '">
 									<td class="product-name">'.$_product->get_title().$woocommerce->cart->get_item_data( $values ).'</td>
 									<td class="product-quantity">'.$values['quantity'].'</td>
 									<td class="product-total">' . apply_filters( 'woocommerce_checkout_item_subtotal', $woocommerce->cart->get_product_subtotal( $_product, $values['quantity'] ), $values, $item_id ) . '</td>
 								</tr>';
+								endif;
 						endif;
 					endforeach;
 				endif;

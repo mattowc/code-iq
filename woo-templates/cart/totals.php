@@ -21,11 +21,6 @@ $available_methods = $woocommerce->shipping->get_available_shipping_methods();
 		<table cellspacing="0" cellpadding="0">
 			<tbody>
 
-				<tr class="cart-subtotal">
-					<th><strong><?php _e('Cart Subtotal', 'woocommerce'); ?></strong></th>
-					<td><strong><?php echo $woocommerce->cart->get_cart_subtotal(); ?></strong></td>
-				</tr>
-
 				<?php if ($woocommerce->cart->get_discounts_before_tax()) : ?>
 
 				<tr class="discount">

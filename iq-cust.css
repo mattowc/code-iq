@@ -1,6 +1,6 @@
 /* 
  * Written by Jonathon McDonald
- * Sept. 27, 2012
+ * Oct 23, 2012
  * 
  * Custom CSS
  *
@@ -40,8 +40,8 @@ h3.option
 	text-align: center;
 }
 
- .last-option-container
- {
+.last-option-container
+{
  	width: 30%;
  	margin-right: 0%;
  	margin-left: 2%;
@@ -50,24 +50,24 @@ h3.option
  	border-radius: 4px;
  	height: 370px;
  	float: right;
- }
+}
 
- .option-header
- {
+.option-header
+{
  	text-align: center;
  	padding: 0px 20px 0 20px;
- }
+}
 
- .option-content 
- {
+.option-content 
+{
  	padding: 0px 20px 0 20px;
- }
+}
 
- .option-button
- {
+.option-button
+{
  	width: 150px;
  	height: 32px;
- }
+}
 
 .options-parent
 {
@@ -83,40 +83,40 @@ p.button
 p.button3
 {
 	position: absolute;
-	top: 380px;
-	right: 90px;
+	top: 385px;
+	right: 40px;
 }
 
 p.button2
 {
 	position: absolute;
-	top: 380px;
+	top: 385px;
 	left: 435px;
 }
 
 p.button1
 {
 	position: absolute;
-	top: 380px;
+	top: 385px;
 	left: 95px;
 }
 
- .price
- {
+.price
+{
  	font-weight: 900;
 	font-size: 24px;
- }
+}
 
- ul.options 
- {
+ul.options 
+{
  	margin: 0;
- }
+}
 
- ul.options li
- {
+ul.options li
+{
  	font-weight: 400;
 	font-size: 12px;
  	list-style: disc;
  	padding: 0;
  	background: none;
- }
+}
