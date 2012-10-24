@@ -201,7 +201,21 @@ $available_methods = $woocommerce->shipping->get_available_shipping_methods();
 				<th colspan="2"><strong><?php _e('Order Total', 'woocommerce'); ?></strong></th>
 				<td>
 				<?php if(WC_Subscriptions_Cart::cart_contains_subscription()) : ?>
-					<strong>$349 (plus shipping) $230/month for 6 months</strong>
+					<?php 
+					// Prepare the actual upfront total
+					$total = ($woocommerce->cart->shipping_total == 0) ? "$349 (plus shipping) <br />" : 
+					"You are paying $" . (349 + $woocommerce->cart->shipping_total) . " now.  <br />"; 
+
+					// Get the date monthly payments begin
+					$next_month  = mktime(0, 0, 0, date("m")+1,   date("d"),   date("Y"));
+					$next_month_formatted = date('m/d/y', $next_month);
+					?>
+					<strong>
+						<?php echo $total; ?>
+						Starting 
+						<?php echo $next_month_formatted; ?> 
+						$230 monthly for 6 months.
+					</strong>
 				<?php else: ?>
 					<strong><?php echo $woocommerce->cart->get_total(); ?></strong>
 				<?php endif; ?>
