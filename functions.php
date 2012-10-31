@@ -139,12 +139,89 @@ function jm_add_return_info()
 {
 	echo '<p>Return Info: </p>';
 	echo '<p style="font-size: 10px;">100% of the program fee will be refund if the purchaser feels that the program is not appropriate for their student and all the program materials are received in resalable condition within 30 days of the date ordered.  Upon our receipt of the program materials the full purchase price will be refunded less $300.00 for restocking and preparing the materials for resale.</p>';
+	echo 'If you have any questions, you can view our <a href="' . get_bloginfo('url') . '/faqs/"><strong>FAQ</strong></a>.  Or you can call us at <strong>(801) 200-3808</strong>';
 }
-add_action('woocommerce_email_before_order_table', 'jm_add_return_info');
+add_action('woocommerce_email_after_order_table', 'jm_add_return_info');
 
+/**
+ * Sends a receipt after a subscription is activated
+ */
 function jm_send_receipt_sub( $order )
 {
 	do_action('woocommerce_order_status_completed_notification', $order->id);
 }
 add_action('subscriptions_activated_for_order', 'jm_send_receipt_sub', 10, 2);
+
+/**
+ * Attempts to adjust the subscription string so we do not need
+ * to manually edit many files
+ */
+function jm_get_sub_price( $product_string, $product )
+{
+	$price    = WC_Subscriptions_Product::get_price( $product );
+	$period   = WC_Subscriptions_Product::get_period( $product );
+	$interval = WC_Subscriptions_Product::get_interval( $product );
+	$length = WC_Subscriptions_Product::get_length( $product );
+	$sign_up  = WC_Subscriptions_Product::get_sign_up_fee( $product );
+
+	if(WC_Subscriptions_Product::is_subscription( $product ))
+	{
+	$product_string = "$" . $price
+	 . " / " . $period
+	 . " for " . $length
+	 . " " . $period
+	 . "s, with a $" . $sign_up
+	 . " signup fee.";
+	}
+
+	return $product_string;
+}
+add_filter('woocommerce_subscription_price_string', 'jm_get_sub_price', 10, 2);
+
+/**
+ * Fixes order total price
+ */
+function jm_get_sub_total( $formatted_total, $order ) 
+{
+	if( WC_Subscriptions_Order::order_contains_subscription( $order ) )
+	{
+		?>
+		<?php 
+		// Prepare the actual upfront total
+		$formatted_total = "<strong>$" . ( WC_Subscriptions_Order::get_total_initial_payment( $order ) + $order->order_shipping ) . "</strong> paid initially.  <br />";
+
+		// Get item
+		$item = $order->get_items();
+		$product = new WC_Subscriptions_Product(  );
+		$price    = WC_Subscriptions_Product::get_price( $item[0]['id'] );
+		$period   = WC_Subscriptions_Product::get_period( $item[0]['id'] );
+		$interval = WC_Subscriptions_Product::get_interval( $item[0]['id'] );
+		$length = WC_Subscriptions_Product::get_length( $item[0]['id'] );
+
+		$formatted_total .= "$" . $price
+		 . " / " . $period
+		 . " for " . $length
+		 . " " . $period
+		 . "s.";
+	}
+
+	// Get item for easier details
+	return $formatted_total;
+}
+add_filter('woocommerce_get_formatted_order_total', 'jm_get_sub_total', 10, 2);
+
+/**
+ * Fixes order shipping total
+ */
+function jm_get_shipping_to_display( $shipping_to_display, $order )
+{
+	if( WC_Subscriptions_Order::order_contains_subscription( $order ) )
+	{
+		$shipping_to_display = "$" . $order->order_shipping
+		 . " via " . $order->shipping_method_title;
+	}
+
+	return $shipping_to_display;
+}
+add_filter( 'woocommerce_order_shipping_to_display', 'jm_get_shipping_to_display', 10, 2 );
 ?>

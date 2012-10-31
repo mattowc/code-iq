@@ -158,7 +158,7 @@
 
                 		<?php
                 			if ($img = get_option('woocommerce_email_header_image')) :
-                				echo '<p style="margin-top:0;"><img src="'.$img.'" alt="'.get_bloginfo('name').'" /></p>';
+                				echo '<p style="margin-top:0;"><a href="' . get_bloginfo('url') . '"><img src="'.$img.'" alt="'.get_bloginfo('name').'" /></a></p>';
                 			endif;
                 		?>
 
