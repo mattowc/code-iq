@@ -204,18 +204,18 @@ $available_methods = $woocommerce->shipping->get_available_shipping_methods();
 					<?php 
 					// Prepare the actual upfront total
 					$total = ($woocommerce->cart->shipping_total == 0) ? "$349 (plus shipping) <br />" : 
-					"You are paying $" . (349 + $woocommerce->cart->shipping_total) . " now.  <br />"; 
+					"You are paying <strong>$" . (349 + $woocommerce->cart->shipping_total) . "</strong> now.  <br />"; 
 
 					// Get the date monthly payments begin
 					$next_month  = mktime(0, 0, 0, date("m")+1,   date("d"),   date("Y"));
 					$next_month_formatted = date('m/d/y', $next_month);
 					?>
-					<strong>
+				
 						<?php echo $total; ?>
 						Starting 
 						<?php echo $next_month_formatted; ?> 
 						$230 monthly for 6 months.
-					</strong>
+					
 				<?php else: ?>
 					<strong><?php echo $woocommerce->cart->get_total(); ?></strong>
 				<?php endif; ?>
@@ -315,8 +315,9 @@ $available_methods = $woocommerce->shipping->get_available_shipping_methods();
 
 			<?php if (woocommerce_get_page_id('terms')>0) : ?>
 			<p class="form-row terms">
-				<label for="terms" class="checkbox"><?php _e('I accept the', 'woocommerce'); ?> <a href="<?php echo esc_url( get_permalink(woocommerce_get_page_id('terms')) ); ?>" target="_blank"><?php _e('terms &amp; conditions', 'woocommerce'); ?></a></label>
+				<label for="terms" class="checkbox"><?php _e('I accept the', 'woocommerce'); ?> <a class="lightbox-iframe" href="<?php echo esc_url( get_permalink(woocommerce_get_page_id('terms')) ); ?>" target="_blank"><?php _e('terms &amp; conditions', 'woocommerce'); ?></a></label>
 				<input type="checkbox" class="input-checkbox" name="terms" <?php if (isset($_POST['terms'])) echo 'checked="checked"'; ?> id="terms" />
+				<br />*Call for international Orders 801-200-3808
 			</p>
 			<?php endif; ?>
 

@@ -29,6 +29,30 @@ if (!defined('ABSPATH')) exit; ?>
 		<?php echo $order->email_order_items_table( true, false, true ); ?>
 	</tbody>
 	<tfoot>
+		<?php if(WC_Subscriptions_Order::order_contains_subscription( $order ) ): ?>
+		<tr>
+			<th scope="row" colspan="2" style="text-align:left; border: 1px solid #eee; border-top-width: 4px;">Shipping</th>
+			<td style="text-align:left; border: 1px solid #eee; border-top-width: 4px;">$<?php echo $order->order_shipping; ?> :: <?php echo $order->shipping_method_title; ?></td>
+		</tr>
+		<tr>
+			<th scope="row" colspan="2" style="text-align:left; border: 1px solid #eee;">Total</th>
+			<td style="text-align:left; border: 1px solid #eee;">
+				<?php 
+				// Prepare the actual upfront total
+				$total = "You paid <strong>$" . (349 + $order->order_shipping) . "</strong> now.  <br />"; 
+
+				// Get the date monthly payments begin
+				$next_month  = mktime(0, 0, 0, date("m")+1,   date("d"),   date("Y"));
+				$next_month_formatted = date('m/d/y', $next_month);
+				?>
+				
+				<?php echo $total; ?>
+				Starting 
+				<?php echo $next_month_formatted; ?> 
+				$230 monthly for 6 months.
+			</td>
+		</tr>
+		<?php else: ?>
 		<?php
 			if ( $totals = $order->get_order_item_totals() ) {
 				$i = 0;
@@ -41,6 +65,7 @@ if (!defined('ABSPATH')) exit; ?>
 				}
 			}
 		?>
+		<?php endif; ?>
 	</tfoot>
 </table>
 

@@ -44,7 +44,9 @@ include_once (TT_INCLUDES_FOLDER_PATH . 'auto_install/auto_install.php'); // sam
 // Hook into add the field to billing
 add_filter( 'woocommerce_checkout_fields' , 'jon_add_custom_checkout_fields' );
  
-// Our hooked in function - $fields is passed via the filter!
+/**
+ * Adds height field to the checkout, properly.
+ */
 function jon_add_custom_checkout_fields( $fields ) {
      $fields['billing']['billing_height'] = array(
         'label'     => __('Height', 'woocommerce'),
@@ -59,6 +61,9 @@ function jon_add_custom_checkout_fields( $fields ) {
 
 add_action('wp_enqueue_scripts', 'jon_jquery_modal');
 
+/**
+ * Depcrecated
+ */
 function jon_jquery_modal()
 {
 	wp_enqueue_script(
@@ -72,4 +77,74 @@ function jon_jquery_modal()
 		get_template_directory_uri() . '/js/jon-modal.js',
 		array('jquery'));
 }
+
+/**
+ * Changes the email for forgot password and other WordPress
+ * inspired emails
+ */
+function jm_change_mail_from()
+{
+	return "support@iq-express.com";
+}
+add_filter('wp_mail_from', 'jm_change_mail_from');
+
+
+/**
+ * Changes the name of the sender in relation to the function
+ * jm_change_mail_from
+ */
+function jm_change_mail_from_name()
+{
+	return "IQ-Express Support";
+}
+add_filter('wp_mail_from_name', 'jm_change_mail_from_name');
+
+/**
+ * This will only work with WooCommerce, this will 
+ * generate a link dynamically that shows the actual
+ * receipt.  This allows us to redirect the user to any page
+ * and display any info on that page and link to the receipt 
+ * after.
+ *
+ * @author Jonathon McDonald <jon@onewebcentric.com>
+ */
+function jm_generate_thank_you_link($atts, $content = "")
+{
+	// Check if the order and key values exist
+	if(!isset($_GET['order']) || !isset($_GET['key']))
+		return;
+
+	// Check for content for link
+	if($content == "")
+		$content = "View Receipt";
+
+	// Extract url, or reset to default
+	extract(shortcode_atts(array(
+		'url' => 'https://iq-express.com/cart/thanks/'
+		), $atts));
+
+	// Prepare the link
+	$return_string = '<a href="' . $url . '?order=' . $_GET['order'] . 
+	'&key=' . $_GET['key'] . '" class="button alt">' . $content . '</a>';
+
+	// Return the link
+	return $return_string;
+}
+add_shortcode('jm_thanks', 'jm_generate_thank_you_link');
+
+/**
+ * Adds return information to the woocommerce email
+ */
+function jm_add_return_info()
+{
+	echo '<p>Return Info: </p>';
+	echo '<p style="font-size: 10px;">100% of the program fee will be refund if the purchaser feels that the program is not appropriate for their student and all the program materials are received in resalable condition within 30 days of the date ordered.  Upon our receipt of the program materials the full purchase price will be refunded less $300.00 for restocking and preparing the materials for resale.</p>';
+}
+add_action('woocommerce_email_before_order_table', 'jm_add_return_info');
+
+function jm_send_receipt_sub( $order )
+{
+	do_action('woocommerce_order_status_completed_notification', $order->id);
+}
+add_action('subscriptions_activated_for_order', 'jm_send_receipt_sub', 10, 2);
 ?>

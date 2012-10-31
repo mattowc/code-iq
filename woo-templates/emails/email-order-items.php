@@ -11,6 +11,8 @@
 
 global $woocommerce;
 
+$is_sub = false; // Bool if there is a subscription in the cart
+
 foreach ($items as $item) :
 
 	// Get/prep product data
@@ -18,6 +20,9 @@ foreach ($items as $item) :
 	$item_meta = new WC_Order_Item_Meta( $item['item_meta'] );
 	$image = ($show_image) ? '<img src="'. current(wp_get_attachment_image_src( get_post_thumbnail_id( $_product->id ), 'thumbnail')) .'" alt="Product Image" height="'.$image_size[1].'" width="'.$image_size[0].'" style="vertical-align:middle; margin-right: 10px;" />' : '';
 
+	// Check if this is a subscription
+	if( WC_Subscriptions_Product::is_subscription( $_product ) )
+		$is_sub = true;
 	?>
 	<tr>
 		<td style="text-align:left; vertical-align:middle; border: 1px solid #eee;"><?php
@@ -38,8 +43,15 @@ foreach ($items as $item) :
 			echo 	($item_meta->meta) ? '<br/><small>' . nl2br( $item_meta->display( true, true ) ) . '</small>' : '';
 
 		?></td>
-		<td style="text-align:left; vertical-align:middle; border: 1px solid #eee;"><?php echo $item['qty'] ;?></td>
-		<td style="text-align:left; vertical-align:middle; border: 1px solid #eee;"><?php echo $order->get_formatted_line_subtotal( $item ); ?></td>
+		<td style="text-align:left; vertical-align:middle; border: 1px solid #eee;"><?php echo $item['qty']; ?></td>
+		<td style="text-align:left; vertical-align:middle; border: 1px solid #eee;">
+			<?php if($is_sub): ?>
+				$230 / month for 6 months, with a $349 sign-up fee
+			<?php else: ?>
+				<?php echo $order->get_formatted_line_subtotal( $item ); ?>
+			<?php endif; ?>
+
+		</td>
 	</tr>
 
 	<?php if ($show_purchase_note && $purchase_note = get_post_meta( $_product->id, '_purchase_note', true)) : ?>
