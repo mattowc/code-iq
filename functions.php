@@ -188,7 +188,7 @@ function jm_get_sub_total( $formatted_total, $order )
 		?>
 		<?php 
 		// Prepare the actual upfront total
-		$formatted_total = "<strong>$" . ( WC_Subscriptions_Order::get_total_initial_payment( $order ) + $order->order_shipping ) . "</strong> paid initially.  <br />";
+		$formatted_total = "<strong>$" . ( WC_Subscriptions_Order::get_total_initial_payment( $order ) ) . "</strong> paid initially.  <br />";
 
 		// Get item
 		$item = $order->get_items();
@@ -209,6 +209,38 @@ function jm_get_sub_total( $formatted_total, $order )
 	return $formatted_total;
 }
 add_filter('woocommerce_get_formatted_order_total', 'jm_get_sub_total', 10, 2);
+
+/**
+ * Fixex cart total
+ */
+function jm_get_cart_total( $formatted_total, $order )
+{
+	global $woocommerce;
+
+	if( WC_Subscriptions_Cart::cart_contains_subscription() )
+	{
+		$sign_up = $woocommerce->cart->sign_up_fee_total;
+		$item = $woocommerce->cart->cart_contents;
+		$price    = WC_Subscriptions_Product::get_price( $item[0]['id'] );
+		$period   = WC_Subscriptions_Product::get_period( $item[0]['id'] );
+		$interval = WC_Subscriptions_Product::get_interval( $item[0]['id'] );
+		$length = WC_Subscriptions_Product::get_length( $item[0]['id'] );
+
+		// Get the date monthly payments begin
+		$next_month  = mktime(0, 0, 0, date("m")+1,   date("d"),   date("Y"));
+		$next_month_formatted = date('m/d/y', $next_month);
+
+		$formatted_total = "You are paying <strong>$" . $sign_up
+		. " now. <br />Starting " . $next_month_formatted
+		. " you will pay $" . $price 
+		. " " . $period . "ly for " . $length
+		. " " . $period
+		. "s.";
+	}
+
+	return $formatted_total;
+}
+add_filter('woocommerce_cart_total', 'jm_get_cart_total', 10, 2);
 
 /**
  * Fixes order shipping total
