@@ -15,8 +15,8 @@
  	width: 30%;
  	margin-left: 0%;
  	margin-right: 2%;
- 	background-image: url(http://iq-express.com/wp-content/uploads/2012/10/light-noise.png);
- 	border: 1px solid #B3B3B3;
+ 	background-image: url(http://iq-express.com/wp-content/uploads/2012/11/blue.png);
+ 	border: 1px solid #0400b7;
  	border-radius: 4px;
  	height: 370px;
  	float: left;
@@ -27,17 +27,18 @@
 	width: 30%;
  	margin-right: 2%;
  	margin-left: 2%;
- 	background-image: url(http://iq-express.com/wp-content/uploads/2012/10/light-noise.png);
- 	border: 1px solid #B3B3B3;
+ 	background-image: url(http://iq-express.com/wp-content/uploads/2012/11/blue.png);
+ 	border: 1px solid #0400b7;
  	border-radius: 4px;
  	height: 370px;
  	float: left;
 }
 h3.option 
 {
-	color: #888;
+	color: #0400b7;
 	font-size: 24px;
 	text-align: center;
+	border-bottom-color: #0400b7;
 }
 
 .last-option-container
@@ -45,8 +46,8 @@ h3.option
  	width: 30%;
  	margin-right: 0%;
  	margin-left: 2%;
- 	background-image: url(http://iq-express.com/wp-content/uploads/2012/10/light-noise.png);
- 	border: 1px solid #B3B3B3;
+ 	background-image: url(http://iq-express.com/wp-content/uploads/2012/11/blue.png);
+ 	border: 1px solid #0400b7;
  	border-radius: 4px;
  	height: 370px;
  	float: right;
@@ -119,4 +120,14 @@ ul.options li
  	list-style: disc;
  	padding: 0;
  	background: none;
+}
+
+:-ms-input-placeholder 
+{
+	color: #ccc;
+}
+
+.input-text .placeholder 
+{
+	color: #ccc;
 }
