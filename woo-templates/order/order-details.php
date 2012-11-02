@@ -24,6 +24,11 @@ $order = new WC_Order( $order_id );
 	<?php
 		if ( $totals = $order->get_order_item_totals() ) foreach ( $totals as $total ) :
 			?>
+			<?php if( WC_Subscriptions_Order::order_contains_subscription( $order ) ): ?>
+				<?php if( $total['label'] == "Cart Subtotal:"): ?>
+					<?php continue; ?>
+				<?php endif; ?>
+			<?php endif; ?>
 			<tr>
 				<th scope="row" colspan="2"><?php echo $total['label']; ?></th>
 				<td><?php echo $total['value']; ?></td>
