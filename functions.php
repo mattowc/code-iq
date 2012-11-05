@@ -59,25 +59,6 @@ function jon_add_custom_checkout_fields( $fields ) {
      return $fields;
 }
 
-add_action('wp_enqueue_scripts', 'jon_jquery_modal');
-
-/**
- * Depcrecated
- */
-function jon_jquery_modal()
-{
-	wp_enqueue_script(
-		'simplemodal',
-		get_template_directory_uri() . '/js/jquery.simplemodal-1.4.3.js',
-		array('jquery')
-	);
-
-	wp_enqueue_script(
-		'jonmodal',
-		get_template_directory_uri() . '/js/jon-modal.js',
-		array('jquery'));
-}
-
 /**
  * Changes the email for forgot password and other WordPress
  * inspired emails
@@ -255,4 +236,5 @@ function jm_sub_fix_action( $valid, $product_id, $quantity )
 	return $valid;
 }
 add_action( 'woocommerce_add_to_cart_validation', 'jm_sub_fix_action', 9, 3);
+
 ?>

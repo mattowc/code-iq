@@ -15,8 +15,8 @@
  	width: 30%;
  	margin-left: 0%;
  	margin-right: 2%;
- 	background-image: url(http://iq-express.com/wp-content/uploads/2012/10/light-noise.png);
- 	border: 1px solid #B3B3B3;
+ 	background-color: #F0F0F0;
+ 	border: 1px solid #bbbbbb;
  	border-radius: 4px;
  	height: 370px;
  	float: left;
@@ -27,17 +27,18 @@
 	width: 30%;
  	margin-right: 2%;
  	margin-left: 2%;
- 	background-image: url(http://iq-express.com/wp-content/uploads/2012/10/light-noise.png);
- 	border: 1px solid #B3B3B3;
+ 	background-color: #eafde2;
+ 	border: 1px solid #bbbbbb;
  	border-radius: 4px;
  	height: 370px;
  	float: left;
 }
 h3.option 
 {
-	color: #888;
+	color: #00005B;
 	font-size: 24px;
 	text-align: center;
+	border-bottom-color: #00005B;
 }
 
 .last-option-container
@@ -45,8 +46,8 @@ h3.option
  	width: 30%;
  	margin-right: 0%;
  	margin-left: 2%;
- 	background-image: url(http://iq-express.com/wp-content/uploads/2012/10/light-noise.png);
- 	border: 1px solid #B3B3B3;
+ 	background-color: #F0F0F0;
+ 	border: 1px solid #bbbbbb;
  	border-radius: 4px;
  	height: 370px;
  	float: right;
@@ -84,7 +85,7 @@ p.button3
 {
 	position: absolute;
 	top: 385px;
-	right: 40px;
+	right: 80px;
 }
 
 p.button2
@@ -119,4 +120,15 @@ ul.options li
  	list-style: disc;
  	padding: 0;
  	background: none;
+}
+
+.best 
+{
+	position: absolute;
+	right: 349px;
+}
+
+#container
+{
+	overflow: visible !important;
 }
