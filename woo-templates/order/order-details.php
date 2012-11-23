@@ -24,6 +24,11 @@ $order = new WC_Order( $order_id );
 	<?php
 		if ( $totals = $order->get_order_item_totals() ) foreach ( $totals as $total ) :
 			?>
+			<?php if( WC_Subscriptions_Order::order_contains_subscription( $order ) ): ?>
+				<?php if( $total['label'] == "Cart Subtotal:"): ?>
+					<?php continue; ?>
+				<?php endif; ?>
+			<?php endif; ?>
 			<tr>
 				<th scope="row" colspan="2"><?php echo $total['label']; ?></th>
 				<td><?php echo $total['value']; ?></td>
@@ -48,7 +53,7 @@ $order = new WC_Order( $order_id );
 					<tr class = "' . esc_attr( apply_filters('woocommerce_order_table_item_class', 'order_table_item', $item, $order ) ) . '">
 						<td class="product-name">';
 
-				echo '<a href="'.get_permalink( $item['id'] ).'">' . $item['name'] . '</a>';
+				echo $item['name'];
 
 				$item_meta = new WC_Order_Item_Meta( $item['item_meta'] );
 				$item_meta->display();

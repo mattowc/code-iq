@@ -15,8 +15,13 @@
  	width: 30%;
  	margin-left: 0%;
  	margin-right: 2%;
+<<<<<<< HEAD
  	background-image: url(http://iq-express.com/wp-content/uploads/2012/11/blue.png);
  	border: 1px solid #0400b7;
+=======
+ 	background-color: #F0F0F0;
+ 	border: 1px solid #bbbbbb;
+>>>>>>> 77d12b8391dfd6c8adcc5c4f18b52f02f3c6fbd3
  	border-radius: 4px;
  	height: 370px;
  	float: left;
@@ -27,18 +32,30 @@
 	width: 30%;
  	margin-right: 2%;
  	margin-left: 2%;
+<<<<<<< HEAD
  	background-image: url(http://iq-express.com/wp-content/uploads/2012/11/blue.png);
  	border: 1px solid #0400b7;
+=======
+ 	background-color: #eafde2;
+ 	border: 1px solid #bbbbbb;
+>>>>>>> 77d12b8391dfd6c8adcc5c4f18b52f02f3c6fbd3
  	border-radius: 4px;
  	height: 370px;
  	float: left;
 }
 h3.option 
 {
+<<<<<<< HEAD
 	color: #0400b7;
 	font-size: 24px;
 	text-align: center;
 	border-bottom-color: #0400b7;
+=======
+	color: #00005B;
+	font-size: 24px;
+	text-align: center;
+	border-bottom-color: #00005B;
+>>>>>>> 77d12b8391dfd6c8adcc5c4f18b52f02f3c6fbd3
 }
 
 .last-option-container
@@ -46,8 +63,13 @@ h3.option
  	width: 30%;
  	margin-right: 0%;
  	margin-left: 2%;
+<<<<<<< HEAD
  	background-image: url(http://iq-express.com/wp-content/uploads/2012/11/blue.png);
  	border: 1px solid #0400b7;
+=======
+ 	background-color: #F0F0F0;
+ 	border: 1px solid #bbbbbb;
+>>>>>>> 77d12b8391dfd6c8adcc5c4f18b52f02f3c6fbd3
  	border-radius: 4px;
  	height: 370px;
  	float: right;
@@ -85,7 +107,7 @@ p.button3
 {
 	position: absolute;
 	top: 385px;
-	right: 40px;
+	right: 80px;
 }
 
 p.button2
@@ -122,6 +144,7 @@ ul.options li
  	background: none;
 }
 
+<<<<<<< HEAD
 :-ms-input-placeholder 
 {
 	color: #ccc;
@@ -130,4 +153,15 @@ ul.options li
 .input-text .placeholder 
 {
 	color: #ccc;
+=======
+.best 
+{
+	position: absolute;
+	right: 349px;
+}
+
+#container
+{
+	overflow: visible !important;
+>>>>>>> 77d12b8391dfd6c8adcc5c4f18b52f02f3c6fbd3
 }

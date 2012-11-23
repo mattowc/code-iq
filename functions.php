@@ -59,25 +59,6 @@ function jon_add_custom_checkout_fields( $fields ) {
      return $fields;
 }
 
-add_action('wp_enqueue_scripts', 'jon_jquery_modal');
-
-/**
- * Depcrecated
- */
-function jon_jquery_modal()
-{
-	wp_enqueue_script(
-		'simplemodal',
-		get_template_directory_uri() . '/js/jquery.simplemodal-1.4.3.js',
-		array('jquery')
-	);
-
-	wp_enqueue_script(
-		'jonmodal',
-		get_template_directory_uri() . '/js/jon-modal.js',
-		array('jquery'));
-}
-
 /**
  * Changes the email for forgot password and other WordPress
  * inspired emails
@@ -210,37 +191,6 @@ function jm_get_sub_total( $formatted_total, $order )
 }
 add_filter('woocommerce_get_formatted_order_total', 'jm_get_sub_total', 10, 2);
 
-/**
- * Fixex cart total
- */
-function jm_get_cart_total( $formatted_total, $order )
-{
-	global $woocommerce;
-
-	if( WC_Subscriptions_Cart::cart_contains_subscription() )
-	{
-		$sign_up = $woocommerce->cart->sign_up_fee_total;
-		$item = $woocommerce->cart->cart_contents;
-		$price    = WC_Subscriptions_Product::get_price( $item[0]['id'] );
-		$period   = WC_Subscriptions_Product::get_period( $item[0]['id'] );
-		$interval = WC_Subscriptions_Product::get_interval( $item[0]['id'] );
-		$length = WC_Subscriptions_Product::get_length( $item[0]['id'] );
-
-		// Get the date monthly payments begin
-		$next_month  = mktime(0, 0, 0, date("m")+1,   date("d"),   date("Y"));
-		$next_month_formatted = date('m/d/y', $next_month);
-
-		$formatted_total = "You are paying <strong>$" . $sign_up
-		. " now. <br />Starting " . $next_month_formatted
-		. " you will pay $" . $price 
-		. " " . $period . "ly for " . $length
-		. " " . $period
-		. "s.";
-	}
-
-	return $formatted_total;
-}
-add_filter('woocommerce_cart_total', 'jm_get_cart_total', 10, 2);
 
 /**
  * Fixes order shipping total
@@ -256,4 +206,35 @@ function jm_get_shipping_to_display( $shipping_to_display, $order )
 	return $shipping_to_display;
 }
 add_filter( 'woocommerce_order_shipping_to_display', 'jm_get_shipping_to_display', 10, 2 );
+
+/**
+ * Having a subscription and then trying to add another item
+ * does not redirect to the cart properly.  This will now cause
+ * an add to cart link to properly redirect.  
+ *
+ * @author Jonathon McDonald <jon@onewebcentric.com>
+ */
+function jm_sub_fix_filter( $url )
+{
+	return '/cart/';
+}
+
+/**
+ * This ensures that a subscription is in the cart so the above fix
+ * will only work if there is a bus in the cart.  
+ *
+ * @author Jonathon McDonald <jon@onewebcentric.com>
+ */
+function jm_sub_fix_action( $valid, $product_id, $quantity )
+{
+	global $woocommerce;
+
+	if ( !WC_Subscriptions_Product::is_subscription( $product_id ) && WC_Subscriptions_Cart::cart_contains_subscription() ) 
+		add_filter( 'add_to_cart_redirect', 'jm_sub_fix_filter', 10, 1 );
+
+
+	return $valid;
+}
+add_action( 'woocommerce_add_to_cart_validation', 'jm_sub_fix_action', 9, 3);
+
 ?>
