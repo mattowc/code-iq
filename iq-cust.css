@@ -1,3 +1,37 @@
+/*
+File:			custom.css
+Description:	Custom styles for Your Theme
+
+HOW TO USE THIS FILE:
+
+Override any class you want and it will change default styling to suit your needs.
+
+For example, if you wish to change the default text blog title to grey, you would add the 
+following declarations to this file:
+
+	#header .blog-title a{ background:#cccccc }     <--- This makes blog title background grey
+
+*/
+
+/* Links ---------------------------- */
+a { color:#ea7202; }
+a:hover { color:#777676; text-decoration:underline; }
+a:visited { color:#ea7202; }
+
+/* footer ---------------------------- */
+#footer { color:#8f8f8f; }
+#footer .footer_inner { background:#fff; }
+#footer p span.onewebcentric { background:url(../images/onewebcentric.png) no-repeat 0;   }
+
+/* Inner Page -------------------------------- */
+.content blockquote{ margin:0px; padding:0px 0px 0px 45px;  font: italic 19px Georgia, "Times New Roman", Times, serif; line-height:25px; height:100%; overflow:hidden; }
+.content h4{ font-size:20px; margin-top:20px; }
+.content p{ margin:0px; padding:10px 0px; line-height:23px;  }
+.content ul{ margin-bottom:10px; }
+.content ul li { padding:10px 0px 10px 40px; line-height:23px;  }
+
+/* Text Widget -------------------------------- */
+.textwidget {font-size: 10px; color: #656363; line-height: 1.3;}
 /* 
  * Written by Jonathon McDonald
  * Oct 23, 2012
@@ -15,13 +49,8 @@
  	width: 30%;
  	margin-left: 0%;
  	margin-right: 2%;
-<<<<<<< HEAD
- 	background-image: url(http://iq-express.com/wp-content/uploads/2012/11/blue.png);
- 	border: 1px solid #0400b7;
-=======
  	background-color: #F0F0F0;
  	border: 1px solid #bbbbbb;
->>>>>>> 77d12b8391dfd6c8adcc5c4f18b52f02f3c6fbd3
  	border-radius: 4px;
  	height: 370px;
  	float: left;
@@ -32,30 +61,18 @@
 	width: 30%;
  	margin-right: 2%;
  	margin-left: 2%;
-<<<<<<< HEAD
- 	background-image: url(http://iq-express.com/wp-content/uploads/2012/11/blue.png);
- 	border: 1px solid #0400b7;
-=======
  	background-color: #eafde2;
  	border: 1px solid #bbbbbb;
->>>>>>> 77d12b8391dfd6c8adcc5c4f18b52f02f3c6fbd3
  	border-radius: 4px;
  	height: 370px;
  	float: left;
 }
 h3.option 
 {
-<<<<<<< HEAD
-	color: #0400b7;
-	font-size: 24px;
-	text-align: center;
-	border-bottom-color: #0400b7;
-=======
 	color: #00005B;
 	font-size: 24px;
 	text-align: center;
 	border-bottom-color: #00005B;
->>>>>>> 77d12b8391dfd6c8adcc5c4f18b52f02f3c6fbd3
 }
 
 .last-option-container
@@ -63,13 +80,8 @@ h3.option
  	width: 30%;
  	margin-right: 0%;
  	margin-left: 2%;
-<<<<<<< HEAD
- 	background-image: url(http://iq-express.com/wp-content/uploads/2012/11/blue.png);
- 	border: 1px solid #0400b7;
-=======
  	background-color: #F0F0F0;
  	border: 1px solid #bbbbbb;
->>>>>>> 77d12b8391dfd6c8adcc5c4f18b52f02f3c6fbd3
  	border-radius: 4px;
  	height: 370px;
  	float: right;
@@ -144,16 +156,6 @@ ul.options li
  	background: none;
 }
 
-<<<<<<< HEAD
-:-ms-input-placeholder 
-{
-	color: #ccc;
-}
-
-.input-text .placeholder 
-{
-	color: #ccc;
-=======
 .best 
 {
 	position: absolute;
@@ -163,5 +165,4 @@ ul.options li
 #container
 {
 	overflow: visible !important;
->>>>>>> 77d12b8391dfd6c8adcc5c4f18b52f02f3c6fbd3
 }

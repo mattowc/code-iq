@@ -158,7 +158,7 @@ a.read_more { color: #777; }
 .content .team_list li:last-child{ background:none;  }
 
 /* footer ---------------------------- */
-#footer { background:url(1-default/footer_pattern.png); color:#8f8f8f; }
+#footer { color:#8f8f8f; }
 #footer .footer_inner { background:#fff; }
 #footer p span.templatic { background:url(../images/templatic.png) no-repeat 0;   }
 
