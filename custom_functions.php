@@ -188,7 +188,7 @@ class templ_anything_slider extends WP_Widget {
 		$readmore = empty($instance['readmore']) ? 'Read More' : apply_filters('widget_readmore', $instance['readmore']);
  		 ?>
  
- <script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/js/jquery-1.3.2.min.js"></script>
+ <script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/js/jquery-1.8.3.min.js"></script>
 		<script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/js/jquery.easing.1.3.js"></script>
 		<script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/js/jquery.coda-slider-2.0.js"></script>
 		 <script type="text/javascript">
