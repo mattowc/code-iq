@@ -19,8 +19,6 @@
     wp_head();?>
     <script type="text/javascript" src="<?php bloginfo('url'); ?>/wp-content/themes/PrivateLawyer/js/jquery.fancybox.pack.js?v=2.1.3"></script>
     <script type="text/javascript" src="<?php bloginfo('url'); ?>/wp-content/themes/PrivateLawyer/js/jquery.fancybox-buttons.js?v=1.0.5"></script>
-    <meta property="og:description" content="IQExpress is a fun site :)" />
-    <meta property="og:image" content="http://iq-express.com/wp-content/uploads/2012/10/iq-logo.png" />
 </head>
 <body <?php body_class(); ?>>
 <?php include_once(TT_TPL_ROOT_PATH.'header_tpl.php'); //header content area ?> 
