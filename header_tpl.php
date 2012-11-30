@@ -7,9 +7,9 @@
 	<div class="header clear">
     	<div class="header_in">
         	<div class="logo">
-            	<?php
-					templ_site_logo();
-					?>
+            	<a href="<?php bloginfo('url'); ?>">
+            		<img src="/wp-content/uploads/2011/05/iq-express-logo-remixed-4.gif" width="310" height="64" alt="">
+            	</a>
             </div>
 			<div class="header_right">		
 				<?php  templ_get_top_header_navigation(); ?>

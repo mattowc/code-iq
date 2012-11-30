@@ -9,7 +9,6 @@
     <link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo('stylesheet_url'); ?>" />
     <link rel="stylesheet" href="<?php bloginfo('url'); ?>/wp-content/themes/PrivateLawyer/jquery.fancybox.css?v=2.1.3" type="text/css" media="screen" />
     <link rel="stylesheet" href="<?php bloginfo('url'); ?>/wp-content/themes/PrivateLawyer/jquery.fancybox-buttons.css?v=1.0.5" type="text/css" media="screen" />
-
     <?php
     wp_enqueue_script('jquery');
     wp_enqueue_script('cycle', get_template_directory_uri() . '/js/jquery.cycle.all.min.js', 'jquery', false);
