@@ -101,7 +101,7 @@ function jm_generate_thank_you_link($atts, $content = "")
 
 	// Extract url, or reset to default
 	extract(shortcode_atts(array(
-		'url' => 'https://iq-express.com/cart/thanks/'
+		'url' => '/cart/thanks/'
 		), $atts));
 
 	// Prepare the link
