@@ -52,6 +52,17 @@ if (!defined('ABSPATH')) exit; ?>
 				$230 monthly for 6 months.
 			</td>
 		</tr>
+		<?php elseif( WC_Subscriptions_Renewal_Order::is_renewal( $order ) ): ?>
+			<tr>
+				<th scope="row" colspan="2" style="text-align:left; border: 1px solid #eee; border-top-width: 4px;">Shipping</th>
+				<td style="text-align:left; border: 1px solid #eee; border-top-width: 4px;">Already shipped.</td>
+			</tr>
+			<tr>
+				<th scope="row" colspan="2" style="text-align:left; border: 1px solid #eee;">Total</th>
+				<td style="text-align:left; border: 1px solid #eee;">
+					$230.00 paid
+				</td>
+			</tr>
 		<?php else: ?>
 		<?php
 			if ( $totals = $order->get_order_item_totals() ) {
